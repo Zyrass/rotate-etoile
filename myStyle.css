@@ -1,0 +1,231 @@
+/* Une autre vision du box-sizing. 
+ * Simplififier les calculs de dimensions
+ * ------------------------------------------------------------------------------------------------------------------
+ * Paul Irish (ingénieur chez Google) qui au début de l'année 2012 alors que l'utilisation
+ * d'Internet Explorer 6 et 7 se faisait de plus en plus rare, a suggéré l'emploi de ce "pas si nouveau"
+ * modèle de boîte pour tous les éléments de la page avec la règle suivante :
+ * ------------------------------------------------------------------------------------------------------------------ */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    /* Je force l'anulation des marges*/
+    margin: 0;
+    padding: 0;
+}
+
+/* -------------------------------------------------------------------------- 
+ | -->  Etape 3
+ | --------------------------------------------------------------------------
+ | LE HTML est fini, donc nous confectionnons ce fichier CSS. Nous commençons
+ | par la mise en forme servant à déterminer l'état initial du document HTML
+ | et de son corps. Ces derniers doivent couvrir toute la largeur et la hauteur
+ | de la fenêtre du navigateur, et avoir un arrière-plan qui représentera
+ | l'espace.
+ * -------------------------------------------------------------------------- */
+body, html {    
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000; 
+}
+/* -------------------------------------------------------------------------- 
+ | -->  Etape 4
+ | --------------------------------------------------------------------------
+ | Nous définissons ici les règles du conteneur du champ d'étoiles qui montera
+ | l'animation. Pour faire simple, nous indiquons qu'il doit afficher la taille
+ | totale de la page, mais vous pouvez modifiser la largeur de la hauteur selon
+ | vos besoins dans vos propres projets. La position est relative afin qu'elle
+ | s'adapte au reste du contenu et on peut positionner les champs intérieurs
+ | par rapport à la position du conteneur du champ.
+ * -------------------------------------------------------------------------- */
+.starfield {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* -------------------------------------------------------------------------- 
+ | -->  Etape 5
+ | --------------------------------------------------------------------------
+ | Nous utilisons > * pour faire référence aux éléments qui sont des descendants
+ | directs du conteneur de champ d'étoiles, c'est-à-dire les balises span.
+ | Vous pouvez ainsi utiliser n'importe quel autre titre d'élément si, pour une
+ | raison ou pour une autre, vous ne souhaitez pas employer span. Nous plaçons
+ | ces éléments de manière absolue dans le coin supérieur gauche et leur taille 
+ | doit recouvrirtoute la largeur et la hauteur de la page.
+ | --------------------------------------------------------------------------
+ | -->  Etape 6
+ | --------------------------------------------------------------------------
+ | Les calques du champ étoilé doivent avoir une image montrant un ciel étoilé 
+ | avec un arrière plan transparent afin qu'on puisse voir tous les calques.
+ | Nous pouvons utiliser le CSS pour déterminer la taille de l'arrière-plan
+ | puis dessiner dessus sans avoir à charger d'image. Nous devons utiliser un
+ | dégradé radial pour dessiner les étoiles en différents points, et nous 
+ | devons dire à l'arrière-plan de se répéter pour que l'effet de l'image 
+ | recouvre n'importe quelle taille déterminée par le conteneur.
+ | --------------------------------------------------------------------------
+ | -->  Etape 7
+ | --------------------------------------------------------------------------
+ | Nous terminons les définitions des calques du champ par des attributs
+ | importants pour cette animation. Tout d'abord, nous déterminons les 
+ | attributs transform-origin afin que la rotation se fasse à partir du milieu 
+ | du calque. Ensuite, nous précisons l'animation à utiliser, à laquelle 
+ | nous donnons le nom de starfieldRotate. Elle se répètera à l'infini
+ | du début à la fin et aura une vitesse linéaire.
+ * -------------------------------------------------------------------------- */
+.starfield > * {
+    /* Etape 5 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* Etape 6 */
+    background-size: 200px 200px;
+    background-image: radial-gradient(2px 2px at 40px 60px, #ccc, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 20px 50px, #ddd, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 30px 100px, #5cb85c, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 30px 60px, #d9534f, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 110px 90px, #0275d8, rgba(0,0,0,0)),
+                      radial-gradient(2px 2px at 190px 150px, #f0ad4e, rgba(0,0,0,0));
+    background-repeat: repeat;
+    /* Etape 7 */
+    transform-origin: 50% 50%;
+    animation-name: starfieldRotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* -------------------------------------------------------------------------- 
+ | -->  Etape 8
+ | --------------------------------------------------------------------------
+ | Les différents calques du champ d'étoiles peuvent s'animer à différentes
+ | vitesses afin de créer une parallaxe donner une profondeur au champ.
+ | Comme nous avons déjà appliqué une animation à chaque calque, il nous suffit
+ | d'indiquer plusieurs vitesses d'animation différentes afin que l'effet
+ | fonctionne. Pour celà, nous utilisons le selecteur :nth-child(n) afin
+ | de faire référence aux calques.
+ * -------------------------------------------------------------------------- */
+.starfield > *:nth-child(1) {
+    animation-duration: 4s;
+}
+.starfield > *:nth-child(2) {
+    animation-duration: 8s;
+}
+.starfield > *:nth-child(3) {
+    animation-duration: 12s;
+}
+.starfield > *:nth-child(4) {
+    animation-duration: 16s;
+}
+.starfield > *:nth-child(5) {
+    animation-duration: 20s;
+}
+.starfield > *:nth-child(6) {
+    animation-duration: 24s;
+}
+.starfield > *:nth-child(7) {
+    animation-duration: 28s;
+}
+.starfield > *:nth-child(8) {
+    animation-duration: 32s;
+}
+.starfield > *:nth-child(9) {
+    animation-duration: 36s;
+}
+.starfield > *:nth-child(10) {
+    animation-duration: 40s;
+}
+/* -------------------------------------------------------------------------- 
+ | -->  Etape 9
+ | --------------------------------------------------------------------------
+ | 
+ | 
+ | 
+ | 
+ | 
+ | 
+ | 
+ | 
+ | 
+ * -------------------------------------------------------------------------- */
+@keyframes starfieldRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --------------------------------------------------------------------------
+ * Le css de la présentation
+ * -------------------------------------------------------------------------- */
+.positionnement {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.presentation {
+    background-color: #222;    
+    box-shadow: 0 0 5px #fff;
+    padding: 20px;
+    text-align: center;
+    word-spacing: 2px;
+    letter-spacing: 5px;
+    color: #ccc;
+}
+.presentation:hover {
+    box-shadow: 0 0 20px #fff;
+    transition: box-shadow .5s linear;
+}
+.presentation fieldset {
+    margin: 20px;
+    padding: 20px;
+}
+.presentation fieldset legend {
+    padding: 0 5px;
+}
+.presentation h1 {
+    color: #0275d8;
+}
+.presentation hr {
+    margin-top: 20px;
+}
+.presentation p {
+    margin: 10px;
+    padding-top: 10px;
+}
+.presentation input {
+    width: 50%;
+    padding: 10px;
+    word-spacing: 3px;
+    letter-spacing: 2px;
+    color: #0275d8;
+}
+
+.visible {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: #222;
+    border: 1px solid #000;
+    box-shadow: 0 0 5px #fff;
+    display: flex;
+    justify-content: center;
+}
+.visible:hover {
+    box-shadow: 0 0 20px #fff;    
+    transition: box-shadow .5s linear;
+}
+.visible span {
+    line-height: 50px;
+    font-size: 2em;
+    color: #ccc;
+}

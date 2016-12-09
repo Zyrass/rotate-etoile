@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Rotation d'un champ d'étoiles</title>
+        <meta name="description" content="Sur le magazine webdesign n°79, j'ai découvers un code pour programmer un champ d'étoiles qui fait une rotation. A voir le rendu final">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <!-- CSS Font-Awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="myStyle.css" media="screen">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="starfield">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <!-- Présentation -->
+            <div class="positionnement">
+                <div class="presentation">   
+                    <fieldset>
+                        <legend>Programmez un champ d'étoiles qui fait une rotation</legend>
+                        <h1>Webdesign n°79</h1>
+                        <hr />
+                        <p>
+                            Cette arrière-plan accrocheur donne envie à vos visiteurs de voir vôtre site.<br />
+                            Il faut savoir que j'ai rajouter 6 span supplémentaires ainsi qu'une modification des couleurs. <br />
+                            Également j'y ai ajouté une touche de JQuery afin que vous puissiez contemplez l'animation.
+                        </p>
+                    </fieldset>
+                    <input type="button" name="hide" value="cacher cette fenêtre pour contempler l'annimation" id="close">
+                </div>
+            </div>
+            <div class="visible" style="display:none">
+                <span><i class="fa fa-eye" aria-hidden="true"></i></span>
+            </div>
+        </div>
+
+        <!-- Script JQuery -->
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/myScript.js"></script>
+    </body>
+</html>
